@@ -1,20 +1,24 @@
-# Diseño: extensión de Chrome "Tragaperras"
+# Diseño: extensión de Chrome "QuemaTokens"
 
 ## Objetivo
 
 Extensión de Chrome (Manifest V3) que al pulsar su icono abre un popup con una
-tragaperras clásica de palanca. Sin servidor, sin dependencias, sin build.
+tragaperras clásica de palanca, llamada QuemaTokens. Sin servidor, sin
+dependencias, sin build.
 
 ## Alcance
 
 - Popup de la extensión con la máquina completa: 3 carretes, palanca lateral,
-  marcador de créditos y mensaje de premio.
+  marcador de tokens, récord y mensaje de premio.
 - La palanca se acciona con clic o arrastre hacia abajo; al soltarla giran los
   carretes y se detienen de izquierda a derecha.
-- Sistema de créditos: se empieza con 100, cada tirada cuesta 5. Los créditos
-  persisten entre aperturas con `chrome.storage.local`. Si se llega a 0, botón
-  de reinicio.
-- Sonidos sintéticos con WebAudio (tirada, giro, premio). Sin ficheros de audio.
+- Tokens: se empieza con 100. Apuesta seleccionable (5/10/25/50) con premio
+  proporcional. Botón de recarga `+100` siempre disponible. Se guarda el
+  premio más grande (récord). Todo persiste con `chrome.storage.local`.
+- Sonidos sintéticos con WebAudio (tirada, giro, premio) con botón de
+  silencio persistente. Sin ficheros de audio.
+- Los símbolos de mayor premio son la mascota de Claude (ráfaga naranja) y el
+  logo de Codex (flor hexagonal oscura).
 
 ## Decisiones
 
@@ -43,11 +47,12 @@ tools/make_icons.py  Generador de iconos PNG
 icons/               icon16.png, icon48.png, icon128.png
 ```
 
-## Tabla de pagos (apuesta 5)
+## Tabla de pagos (apuesta 5; escala en proporción a la apuesta)
 
 | Combinación        | Premio |
 |--------------------|--------|
-| 3 × siete          | 250    |
+| 3 × Claude         | 250    |
+| 3 × Codex          | 150    |
 | 3 × BAR            | 100    |
 | 3 × campana        | 60     |
 | 3 × estrella       | 40     |
@@ -57,8 +62,8 @@ icons/               icon16.png, icon48.png, icon128.png
 | 1 × cereza         | 2      |
 
 Cada carrete es una tira de 20 posiciones con distinta frecuencia por símbolo
-(los sietes escasean). El resultado se decide antes de animar: la animación
-solo escenifica el resultado ya calculado.
+(Claude y Codex aparecen una sola vez por tira). El resultado se decide antes
+de animar: la animación solo escenifica el resultado ya calculado.
 
 ## Flujo
 

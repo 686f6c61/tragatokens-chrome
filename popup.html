@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>QuemaTokens</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="maquina">
+    <div class="marquesina">
+      <div class="luces" id="luces"></div>
+      <h1>QUEMATOKENS</h1>
+      <div class="luces" id="luces2"></div>
+    </div>
+
+    <div class="cuerpo">
+      <div class="panel-carretes">
+        <div class="ventana">
+          <div class="carrete" id="carrete-0"><div class="tira"></div></div>
+          <div class="carrete" id="carrete-1"><div class="tira"></div></div>
+          <div class="carrete" id="carrete-2"><div class="tira"></div></div>
+          <div class="linea-premio"></div>
+        </div>
+      </div>
+
+      <div class="palanca-zona">
+        <div class="palanca" id="palanca">
+          <div class="brazo" id="brazo">
+            <div class="vara"></div>
+            <div class="bola"></div>
+          </div>
+          <div class="base-palanca"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-inferior">
+      <div class="display">
+        <span class="etiqueta">TOKENS</span>
+        <span class="valor" id="creditos">--</span>
+      </div>
+      <div class="mensaje" id="mensaje">Tira de la palanca</div>
+      <div class="display premio">
+        <span class="etiqueta">RÉCORD</span>
+        <span class="valor" id="record">0</span>
+      </div>
+    </div>
+
+    <div class="controles">
+      <div class="control-apuesta">
+        <button class="boton-control" id="apuesta-menos">&minus;</button>
+        <div class="display compacto">
+          <span class="etiqueta">APUESTA</span>
+          <span class="valor" id="apuesta">5</span>
+        </div>
+        <button class="boton-control" id="apuesta-mas">+</button>
+      </div>
+      <button class="boton-control ancho" id="recargar">+100</button>
+      <button class="boton-control" id="silencio" title="Activar o quitar sonido">
+        <svg id="icono-sonido" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M4 9 h4 l5 -5 v16 l-5 -5 H4 z" fill="currentColor"/>
+          <path class="ondas" d="M16 8 q3 4 0 8 M18.5 6 q4.5 6 0 12" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path class="tachado oculto" d="M16 9 l6 6 M22 9 l-6 6" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
