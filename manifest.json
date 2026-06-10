@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "QuemaTokens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "QuemaTokens: tragaperras clásica de palanca. Abre el popup y quema tokens.",
   "permissions": ["storage"],
   "action": {
