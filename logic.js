@@ -1,15 +1,21 @@
 // Lógica pura de la tragaperras: sin DOM, testeable con node:test.
 
-export const SYMBOLS = ['cereza', 'limon', 'estrella', 'campana', 'bar', 'codex', 'claude'];
+export const SYMBOLS = [
+  'mistral', 'nvidia', 'minimax', 'zai', 'qwen',
+  'deepseek', 'xai', 'gemini', 'codex', 'claude'
+];
 
 export const APUESTAS = [5, 10, 25, 50];
 export const START_CREDITS = 100;
 
 const APUESTA_BASE = APUESTAS[0];
 
-// Cada tira tiene 20 posiciones; la frecuencia controla la probabilidad:
-// cereza 6, limon 5, estrella 3, campana 2, bar 2, codex 1, claude 1.
-const FRECUENCIA = { cereza: 6, limon: 5, estrella: 3, campana: 2, bar: 2, codex: 1, claude: 1 };
+// Cada tira tiene 20 posiciones; la frecuencia controla la probabilidad
+// (los símbolos de mayor premio aparecen una sola vez).
+const FRECUENCIA = {
+  mistral: 5, nvidia: 3, minimax: 2, zai: 2, qwen: 2,
+  deepseek: 2, xai: 1, gemini: 1, codex: 1, claude: 1
+};
 
 function construirTira(orden) {
   const tira = [];
@@ -21,9 +27,9 @@ function construirTira(orden) {
 
 // Orden distinto por tira para que visualmente no giren idénticas.
 export const REELS = [
-  construirTira(['cereza', 'limon', 'estrella', 'campana', 'bar', 'codex', 'claude']),
-  construirTira(['limon', 'cereza', 'campana', 'estrella', 'claude', 'codex', 'bar']),
-  construirTira(['estrella', 'limon', 'cereza', 'bar', 'campana', 'codex', 'claude'])
+  construirTira(['mistral', 'nvidia', 'minimax', 'zai', 'qwen', 'deepseek', 'xai', 'gemini', 'codex', 'claude']),
+  construirTira(['nvidia', 'mistral', 'qwen', 'minimax', 'claude', 'zai', 'gemini', 'deepseek', 'codex', 'xai']),
+  construirTira(['minimax', 'qwen', 'mistral', 'deepseek', 'nvidia', 'zai', 'codex', 'xai', 'gemini', 'claude'])
 ];
 
 // Baraja cada tira de forma fija (Fisher-Yates con semilla simple) para que
@@ -52,19 +58,22 @@ export function spin(rng = Math.random) {
 const TABLA_TRES = {
   claude: 250,
   codex: 150,
-  bar: 100,
-  campana: 60,
-  estrella: 40,
-  limon: 25,
-  cereza: 15
+  gemini: 100,
+  xai: 75,
+  deepseek: 60,
+  qwen: 40,
+  zai: 30,
+  minimax: 20,
+  nvidia: 15,
+  mistral: 10
 };
 
 export function payout(simbolos, apuesta = APUESTA_BASE) {
   const multiplicador = apuesta / APUESTA_BASE;
   const [a, b, c] = simbolos;
   if (a === b && b === c) return TABLA_TRES[a] * multiplicador;
-  const cerezas = simbolos.filter((s) => s === 'cereza').length;
-  if (cerezas === 2) return 5 * multiplicador;
-  if (cerezas === 1) return 2 * multiplicador;
+  const mistrales = simbolos.filter((s) => s === 'mistral').length;
+  if (mistrales === 2) return 5 * multiplicador;
+  if (mistrales === 1) return 2 * multiplicador;
   return 0;
 }

@@ -1,5 +1,5 @@
 import { REELS, APUESTAS, START_CREDITS, spin, payout } from './logic.js';
-import { SVG } from './simbolos.js';
+import { IMG } from './simbolos.js';
 import { sonidoPalanca, sonidoParada, sonidoPremio, sonidoFallo, setSilencio } from './sound.js';
 
 const ALTO_CELDA = 78;
@@ -58,7 +58,7 @@ function montarCarretes() {
     const celdas = [];
     for (let r = 0; r < REPETICIONES; r++) {
       for (const simbolo of REELS[i]) {
-        celdas.push(`<div class="celda">${SVG[simbolo]}</div>`);
+        celdas.push(`<div class="celda"><img src="${IMG[simbolo]}" alt="${simbolo}"></div>`);
       }
     }
     tira.innerHTML = celdas.join('');

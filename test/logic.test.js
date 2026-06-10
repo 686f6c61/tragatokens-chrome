@@ -9,10 +9,10 @@ import {
   payout
 } from '../logic.js';
 
-test('hay 7 símbolos definidos, con claude y codex incluidos', () => {
+test('hay 10 símbolos: los logos de las IA, NVIDIA y Mistral', () => {
   assert.deepEqual(
     [...SYMBOLS].sort(),
-    ['bar', 'campana', 'cereza', 'claude', 'codex', 'estrella', 'limon']
+    ['claude', 'codex', 'deepseek', 'gemini', 'minimax', 'mistral', 'nvidia', 'qwen', 'xai', 'zai']
   );
 });
 
@@ -26,10 +26,20 @@ test('REELS son 3 tiras de 20 posiciones con símbolos válidos', () => {
   }
 });
 
-test('cada tira contiene exactamente un claude y un codex (premios escasos)', () => {
+test('cada tira contiene exactamente un claude, un codex y un gemini (premios altos escasos)', () => {
   for (const reel of REELS) {
     assert.equal(reel.filter((s) => s === 'claude').length, 1);
     assert.equal(reel.filter((s) => s === 'codex').length, 1);
+    assert.equal(reel.filter((s) => s === 'gemini').length, 1);
+  }
+});
+
+test('mistral es el símbolo más frecuente (paga premios menores)', () => {
+  for (const reel of REELS) {
+    const cuenta = {};
+    for (const s of reel) cuenta[s] = (cuenta[s] || 0) + 1;
+    const maximo = Math.max(...Object.values(cuenta));
+    assert.equal(cuenta.mistral, maximo);
   }
 });
 
@@ -59,36 +69,38 @@ test('spin es determinista con un rng fijo', () => {
 test('payout: tres iguales según tabla con apuesta mínima', () => {
   assert.equal(payout(['claude', 'claude', 'claude'], 5), 250);
   assert.equal(payout(['codex', 'codex', 'codex'], 5), 150);
-  assert.equal(payout(['bar', 'bar', 'bar'], 5), 100);
-  assert.equal(payout(['campana', 'campana', 'campana'], 5), 60);
-  assert.equal(payout(['estrella', 'estrella', 'estrella'], 5), 40);
-  assert.equal(payout(['limon', 'limon', 'limon'], 5), 25);
-  assert.equal(payout(['cereza', 'cereza', 'cereza'], 5), 15);
+  assert.equal(payout(['gemini', 'gemini', 'gemini'], 5), 100);
+  assert.equal(payout(['xai', 'xai', 'xai'], 5), 75);
+  assert.equal(payout(['deepseek', 'deepseek', 'deepseek'], 5), 60);
+  assert.equal(payout(['qwen', 'qwen', 'qwen'], 5), 40);
+  assert.equal(payout(['zai', 'zai', 'zai'], 5), 30);
+  assert.equal(payout(['minimax', 'minimax', 'minimax'], 5), 20);
+  assert.equal(payout(['nvidia', 'nvidia', 'nvidia'], 5), 15);
+  assert.equal(payout(['mistral', 'mistral', 'mistral'], 5), 10);
 });
 
 test('payout: a mayor apuesta, premio proporcional', () => {
   assert.equal(payout(['claude', 'claude', 'claude'], 10), 500);
   assert.equal(payout(['claude', 'claude', 'claude'], 25), 1250);
   assert.equal(payout(['claude', 'claude', 'claude'], 50), 2500);
-  assert.equal(payout(['cereza', 'cereza', 'limon'], 50), 50);
-  assert.equal(payout(['cereza', 'limon', 'bar'], 25), 10);
+  assert.equal(payout(['mistral', 'mistral', 'gemini'], 50), 50);
+  assert.equal(payout(['mistral', 'qwen', 'xai'], 25), 10);
 });
 
-test('payout: dos cerezas pagan 5 (apuesta mínima) en cualquier posición', () => {
-  assert.equal(payout(['cereza', 'cereza', 'limon'], 5), 5);
-  assert.equal(payout(['cereza', 'bar', 'cereza'], 5), 5);
-  assert.equal(payout(['claude', 'cereza', 'cereza'], 5), 5);
+test('payout: dos mistral pagan 5 (apuesta mínima) en cualquier posición', () => {
+  assert.equal(payout(['mistral', 'mistral', 'zai'], 5), 5);
+  assert.equal(payout(['mistral', 'gemini', 'mistral'], 5), 5);
+  assert.equal(payout(['claude', 'mistral', 'mistral'], 5), 5);
 });
 
-test('payout: una cereza paga 2 (apuesta mínima) en cualquier posición', () => {
-  assert.equal(payout(['cereza', 'limon', 'bar'], 5), 2);
-  assert.equal(payout(['campana', 'cereza', 'estrella'], 5), 2);
-  assert.equal(payout(['limon', 'bar', 'cereza'], 5), 2);
+test('payout: un mistral paga 2 (apuesta mínima) en cualquier posición', () => {
+  assert.equal(payout(['mistral', 'qwen', 'gemini'], 5), 2);
+  assert.equal(payout(['minimax', 'mistral', 'deepseek'], 5), 2);
+  assert.equal(payout(['zai', 'xai', 'mistral'], 5), 2);
 });
 
 test('payout: sin combinación no hay premio sea cual sea la apuesta', () => {
-  assert.equal(payout(['limon', 'bar', 'campana'], 5), 0);
-  assert.equal(payout(['claude', 'claude', 'bar'], 50), 0);
-  assert.equal(payout(['claude', 'codex', 'bar'], 50), 0);
-  assert.equal(payout(['estrella', 'campana', 'limon'], 25), 0);
+  assert.equal(payout(['qwen', 'gemini', 'deepseek'], 5), 0);
+  assert.equal(payout(['claude', 'claude', 'codex'], 50), 0);
+  assert.equal(payout(['nvidia', 'codex', 'gemini'], 25), 0);
 });

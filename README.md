@@ -23,17 +23,23 @@ carretes y se paga según la línea central.
 
 ## Tabla de pagos (apuesta 5; escala con la apuesta)
 
+Los símbolos son logos de modelos de IA (y NVIDIA). Mistral es el más
+frecuente y el de menor valor.
+
 | Combinación      | Premio |
 |------------------|--------|
 | 3 × Claude       | 250    |
 | 3 × Codex        | 150    |
-| 3 × BAR          | 100    |
-| 3 × campana      | 60     |
-| 3 × estrella     | 40     |
-| 3 × limón        | 25     |
-| 3 × cereza       | 15     |
-| 2 × cereza       | 5      |
-| 1 × cereza       | 2      |
+| 3 × Gemini       | 100    |
+| 3 × xAI          | 75     |
+| 3 × DeepSeek     | 60     |
+| 3 × Qwen         | 40     |
+| 3 × Z.ai         | 30     |
+| 3 × MiniMax      | 20     |
+| 3 × NVIDIA       | 15     |
+| 3 × Mistral      | 10     |
+| 2 × Mistral      | 5      |
+| 1 × Mistral      | 2      |
 
 ## Desarrollo
 

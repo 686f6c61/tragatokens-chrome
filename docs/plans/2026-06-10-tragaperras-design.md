@@ -49,21 +49,28 @@ icons/               icon16.png, icon48.png, icon128.png
 
 ## Tabla de pagos (apuesta 5; escala en proporción a la apuesta)
 
+Los símbolos son logos de modelos de IA (PNG en `img/`): Claude, Codex,
+Gemini, xAI, DeepSeek, Qwen, Z.ai, MiniMax, NVIDIA y Mistral.
+
 | Combinación        | Premio |
 |--------------------|--------|
 | 3 × Claude         | 250    |
 | 3 × Codex          | 150    |
-| 3 × BAR            | 100    |
-| 3 × campana        | 60     |
-| 3 × estrella       | 40     |
-| 3 × limón          | 25     |
-| 3 × cereza         | 15     |
-| 2 × cereza         | 5      |
-| 1 × cereza         | 2      |
+| 3 × Gemini         | 100    |
+| 3 × xAI            | 75     |
+| 3 × DeepSeek       | 60     |
+| 3 × Qwen           | 40     |
+| 3 × Z.ai           | 30     |
+| 3 × MiniMax        | 20     |
+| 3 × NVIDIA         | 15     |
+| 3 × Mistral        | 10     |
+| 2 × Mistral        | 5      |
+| 1 × Mistral        | 2      |
 
 Cada carrete es una tira de 20 posiciones con distinta frecuencia por símbolo
-(Claude y Codex aparecen una sola vez por tira). El resultado se decide antes
-de animar: la animación solo escenifica el resultado ya calculado.
+(Claude, Codex y Gemini aparecen una sola vez por tira; Mistral es el más
+frecuente). El resultado se decide antes de animar: la animación solo
+escenifica el resultado ya calculado.
 
 ## Flujo
 
