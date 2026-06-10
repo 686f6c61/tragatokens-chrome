@@ -37,17 +37,22 @@ body {
   border-radius: 12px;
   padding: 6px 10px;
   margin-bottom: 10px;
+  overflow: hidden;
 }
 
 .marquesina h1 {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
   color: var(--dorado-claro);
-  font-size: 21px;
-  letter-spacing: 4px;
+  font-size: 17px;
+  letter-spacing: 3px;
   text-shadow: 0 2px 3px var(--sombra);
   white-space: nowrap;
+  overflow: hidden;
 }
 
-.luces { display: flex; gap: 5px; }
+.luces { display: flex; gap: 5px; flex-shrink: 0; }
 
 .luz {
   width: 9px;
