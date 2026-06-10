@@ -3,6 +3,14 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y versionado [SemVer](https://semver.org/lang/es/).
 
+## [1.1.0] - 2026-06-10
+
+### Added
+
+- Tabla de premios en el popup (botón `i`): cada combinación con sus iconos
+  y lo que paga según la apuesta seleccionada, con el premio gordo y el
+  segundo destacados. Se actualiza al cambiar la apuesta.
+
 ## [1.0.1] - 2026-06-10
 
 ### Changed

@@ -18,6 +18,7 @@ body {
 }
 
 .maquina {
+  position: relative;
   background: linear-gradient(180deg, var(--rojo) 0%, var(--rojo-oscuro) 100%);
   border: 6px solid var(--dorado);
   border-radius: 18px;
@@ -292,5 +293,92 @@ body {
 }
 
 .boton-control.ancho { padding: 0 16px; }
+
+/* Tabla de premios */
+.tabla-pagos {
+  position: absolute;
+  inset: 8px;
+  background: rgba(17, 10, 12, 0.96);
+  border: 3px solid var(--dorado);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.tabla-pagos.oculto { display: none; }
+
+.tabla-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--dorado-claro);
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.tabla-cabecera .boton-control { min-width: 28px; height: 28px; font-size: 15px; }
+
+.tabla-filas {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 14px;
+  align-content: start;
+}
+
+.fila-pago {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.fila-pago .combo { display: flex; align-items: center; gap: 2px; }
+
+.fila-pago img {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  background: var(--crema);
+  border-radius: 3px;
+  padding: 1px;
+}
+
+.fila-pago .importe {
+  color: #7CFC8a;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.fila-pago.gordo {
+  border: 1px solid var(--dorado);
+  background: rgba(232, 185, 74, 0.16);
+}
+
+.fila-pago.gordo .importe { color: var(--dorado-claro); }
+
+.fila-pago.segundo {
+  border: 1px solid #9a9a9a;
+  background: rgba(200, 200, 200, 0.12);
+}
+
+.fila-pago.segundo .importe { color: #dcdcdc; }
+
+.tabla-nota {
+  margin-top: 8px;
+  color: var(--dorado);
+  font-size: 11px;
+  font-style: italic;
+  text-align: center;
+}
 
 .oculto { display: none; }

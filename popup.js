@@ -1,4 +1,4 @@
-import { REELS, APUESTAS, START_CREDITS, spin, payout } from './logic.js';
+import { REELS, SYMBOLS, APUESTAS, START_CREDITS, spin, payout } from './logic.js';
 import { IMG } from './simbolos.js';
 import { sonidoPalanca, sonidoParada, sonidoPremio, sonidoFallo, setSilencio } from './sound.js';
 
@@ -238,6 +238,7 @@ function cambiarApuesta(paso) {
   if (nuevo < 0 || nuevo >= APUESTAS.length) return;
   indiceApuesta = nuevo;
   pintarMarcadores();
+  if (!tablaPagos.classList.contains('oculto')) montarTablaPagos();
   almacen.guardar();
 }
 
@@ -261,6 +262,36 @@ botonSilencio.addEventListener('click', async () => {
   silencio = !silencio;
   pintarSilencio();
   await almacen.guardar();
+});
+
+// --- Tabla de premios ---
+
+const tablaPagos = $('tabla-pagos');
+
+function montarTablaPagos() {
+  $('tabla-titulo').textContent = `Premios con apuesta ${apuesta()}`;
+  const filas = [...SYMBOLS]
+    .map((s) => ({ simbolo: s, premio: payout([s, s, s], apuesta()), veces: 3 }))
+    .sort((a, b) => b.premio - a.premio);
+  // Premios parciales: el símbolo barato paga con 2 y hasta con 1 aparición.
+  filas.push(
+    { simbolo: 'mistral', premio: payout(['mistral', 'mistral', 'nvidia'], apuesta()), veces: 2 },
+    { simbolo: 'mistral', premio: payout(['mistral', 'nvidia', 'qwen'], apuesta()), veces: 1 }
+  );
+  $('tabla-filas').innerHTML = filas.map(({ simbolo, premio, veces }, i) => {
+    const imagenes = `<img src="${IMG[simbolo]}" alt="${simbolo}">`.repeat(veces);
+    const destacado = i === 0 ? ' gordo' : i === 1 ? ' segundo' : '';
+    return `<div class="fila-pago${destacado}"><span class="combo">${imagenes}</span><span class="importe">${premio}</span></div>`;
+  }).join('');
+}
+
+$('info').addEventListener('click', () => {
+  montarTablaPagos();
+  tablaPagos.classList.remove('oculto');
+});
+
+$('cerrar-tabla').addEventListener('click', () => {
+  tablaPagos.classList.add('oculto');
 });
 
 // --- Inicio ---
