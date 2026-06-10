@@ -20,4 +20,9 @@ zip -q "$destino" \
   img/*.png
 
 echo "[OK] $destino"
-unzip -l "$destino"
+
+# Deja también la carpeta descomprimida lista para "Cargar descomprimida".
+descomprimida="$raiz/dist/quematokens"
+rm -rf "$descomprimida"
+unzip -q "$destino" -d "$descomprimida"
+echo "[OK] $descomprimida (para cargar descomprimida en chrome://extensions)"
