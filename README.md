@@ -7,6 +7,11 @@ Chrome. Mientras esperas a que tu agente de IA termine de "pensar" (es decir,
 de incinerar tu presupuesto a razón de varios céntimos por segundo), abres el
 popup, tiras de la palanca y quemas tus propios tokens. Justicia poética.
 
+<p align="center">
+  <img src="docs/capturas/maquina.png" alt="QuemaTokens en Chrome: la máquina con palanca" width="420">
+  <img src="docs/capturas/premios.png" alt="Tabla de premios con los logos y sus pagos" width="420">
+</p>
+
 ## El problema (muy serio)
 
 Has lanzado un refactor con tu agente favorito. La barra de progreso gira.
