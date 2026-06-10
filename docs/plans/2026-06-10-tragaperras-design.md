@@ -25,8 +25,8 @@ dependencias, sin build.
 - **Manifest V3 + popup de acción**: es la forma canónica de "abres la
   extensión y aparece el juego".
 - **Vanilla JS/HTML/CSS**: el juego es pequeño; un framework no aporta nada.
-- **Símbolos como SVG inline** (cereza, limón, campana, siete, BAR, estrella):
-  cumple la norma de no usar emojis y no requiere librerías de iconos.
+- **Símbolos como imágenes PNG** en `img/` (logos de modelos de IA aportados
+  por el usuario, 128x128 con transparencia): sin emojis ni librerías de iconos.
 - **Lógica separada de la vista**: `logic.js` exporta funciones puras
   (generación de tirada, cálculo de premio) testeables con `node:test`, sin
   tocar el DOM. `popup.js` solo orquesta DOM y animaciones.
